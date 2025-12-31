@@ -1,9 +1,10 @@
 import { motion } from 'motion/react';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { Sparkles, ArrowRight, Users } from 'lucide-react';
 
 interface GreetingPageProps {
   name: string;
   onContinue: () => void;
+  onGoToContributors: () => void;
 }
 
 const inspiringQuotes = [
@@ -14,7 +15,7 @@ const inspiringQuotes = [
   "May every sunrise bring hope and every sunset bring peace in this beautiful year ahead.",
 ];
 
-export function GreetingPage({ name, onContinue }: GreetingPageProps) {
+export function GreetingPage({ name, onContinue, onGoToContributors }: GreetingPageProps) {
   const randomQuote = inspiringQuotes[Math.floor(Math.random() * inspiringQuotes.length)];
 
   return (
@@ -171,6 +172,20 @@ export function GreetingPage({ name, onContinue }: GreetingPageProps) {
           >
             <span className="text-xl">Create Your Magical Card</span>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+          </motion.button>
+
+          {/* Contributors button */}
+          <motion.button
+            onClick={onGoToContributors}
+            className="group px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/30 hover:border-white/50 text-white rounded-full flex items-center gap-3 mx-auto shadow-2xl backdrop-blur-sm mt-6 transition-all"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.7 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Users className="w-6 h-6" />
+            <span className="text-lg">View Contributors</span>
           </motion.button>
         </div>
       </div>

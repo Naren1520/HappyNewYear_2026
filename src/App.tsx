@@ -5,8 +5,9 @@ import { GreetingPage } from './components/GreetingPage';
 import { UploadPage } from './components/UploadPage';
 import { TemplatePage } from './components/TemplatePage';
 import { DownloadPage } from './components/DownloadPage';
+import { ContributorsPage } from './components/ContributorsPage';
 
-type Page = 'landing' | 'name' | 'greeting' | 'upload' | 'template' | 'download';
+type Page = 'landing' | 'name' | 'greeting' | 'upload' | 'template' | 'download' | 'contributors';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('landing');
@@ -49,12 +50,20 @@ export default function App() {
     setCurrentPage('template');
   };
 
+  const handleGoToContributors = () => {
+    setCurrentPage('contributors');
+  };
+
+  const handleBackFromContributors = () => {
+    setCurrentPage('greeting');
+  };
+
   return (
     <div className="min-h-screen w-full overflow-hidden">
       {currentPage === 'landing' && <LandingPage />}
       {currentPage === 'name' && <NameInputPage onSubmit={handleNameSubmit} />}
       {currentPage === 'greeting' && (
-        <GreetingPage name={userName} onContinue={handleGreetingContinue} />
+        <GreetingPage name={userName} onContinue={handleGreetingContinue} onGoToContributors={handleGoToContributors} />
       )}
       {currentPage === 'upload' && <UploadPage onUpload={handlePhotoUpload} />}
       {currentPage === 'template' && userPhoto && (
@@ -70,6 +79,9 @@ export default function App() {
           userName={userName}
           onBackToTemplates={handleBackToTemplates}
         />
+      )}
+      {currentPage === 'contributors' && (
+        <ContributorsPage onBack={handleBackFromContributors} />
       )}
     </div>
   );
