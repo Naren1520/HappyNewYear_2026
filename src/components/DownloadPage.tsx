@@ -23,7 +23,7 @@ export function DownloadPage({
 
   const handleWhatsAppShare = () => {
     const message = encodeURIComponent(
-      '✨ Happy New Year 2026! I created this just for you 🎆 Check it out 💖'
+      '🎉 WISH YOU HAPPY NEW YEAR 2026 🎆 ✨\n\nCheck out this amazing New Year greeting: https://happy-newyear-20-26.netlify.app/ 🌟💖🎊'
     );
     
     // For web WhatsApp
