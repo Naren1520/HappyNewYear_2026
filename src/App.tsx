@@ -6,8 +6,9 @@ import { UploadPage } from './components/UploadPage';
 import { TemplatePage } from './components/TemplatePage';
 import { DownloadPage } from './components/DownloadPage';
 import { AIServicePage } from './components/AiServicePage';
+import { ContributorsPage } from './components/ContributorsPage';
 
-type Page = 'landing' | 'name' | 'greeting' | 'upload' | 'template' | 'download' | 'ai';
+type Page = 'landing' | 'name' | 'greeting' | 'upload' | 'template' | 'download' | 'ai' | 'contributors';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('landing');
@@ -60,12 +61,20 @@ export default function App() {
     setCurrentPage('template');
   };
 
+  const handleGoToContributors = () => {
+    setCurrentPage('contributors');
+  };
+
+  const handleBackFromContributors = () => {
+    setCurrentPage('greeting');
+  };
+
   return (
     <div className="min-h-screen w-full overflow-hidden">
       {currentPage === 'landing' && <LandingPage />}
       {currentPage === 'name' && <NameInputPage onSubmit={handleNameSubmit} />}
       {currentPage === 'greeting' && (
-        <GreetingPage name={userName} onContinue={handleGreetingContinue} />
+        <GreetingPage name={userName} onContinue={handleGreetingContinue} onGoToContributors={handleGoToContributors} />
       )}
       {currentPage === 'upload' && (
         <UploadPage
@@ -93,6 +102,9 @@ export default function App() {
           userName={userName}
           onBackToTemplates={handleBackToTemplates}
         />
+      )}
+      {currentPage === 'contributors' && (
+        <ContributorsPage onBack={handleBackFromContributors} />
       )}
     </div>
   );

@@ -253,6 +253,7 @@ export function TemplatePage({
   userPhoto,
   userName,
   onTemplateSelect,
+  onGoToContributors,
 }: TemplatePageProps) {
   const [loading, setLoading] = useState<number | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -428,11 +429,11 @@ export function TemplatePage({
   };
 
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-[#0f0a1f] via-[#1a1a3a] to-[#2d1b4e] overflow-auto">
+    <div className="fixed inset-0 bg-gradient-to-br from-[#0f0a1f] via-[#1a1a3a] to-[#2d1b4e] overflow-auto flex flex-col">
       <canvas ref={canvasRef} className="hidden" />
 
       {/* Main content */}
-      <div className="relative z-10 min-h-screen p-4 py-12">
+      <div className="relative z-10 flex-1 min-h-screen p-4 py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -496,6 +497,15 @@ export function TemplatePage({
           </div>
         </motion.div>
       </div>
+
+      {/* Footer Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="relative z-10 border-t border-white/20 bg-gradient-to-r from-transparent via-white/5 to-transparent backdrop-blur-sm"
+      >
+      </motion.div>
     </div>
   );
 }
