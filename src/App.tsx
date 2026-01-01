@@ -5,8 +5,9 @@ import { GreetingPage } from './components/GreetingPage';
 import { UploadPage } from './components/UploadPage';
 import { TemplatePage } from './components/TemplatePage';
 import { DownloadPage } from './components/DownloadPage';
+import { AIServicePage } from './components/AiServicePage';
 
-type Page = 'landing' | 'name' | 'greeting' | 'upload' | 'template' | 'download';
+type Page = 'landing' | 'name' | 'greeting' | 'upload' | 'template' | 'download' | 'ai';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('landing');
@@ -34,9 +35,19 @@ export default function App() {
     setCurrentPage('upload');
   };
 
-  const handlePhotoUpload = (photo: string) => {
+  const handleChooseTemplate = (photo: string) => {
     setUserPhoto(photo);
     setCurrentPage('template');
+  };
+
+  const handleCustomizeAI = (photo: string) => {
+    setUserPhoto(photo);
+    setCurrentPage('ai');
+  };
+
+  const handleAIGenerated = (image: string) => {
+    setGeneratedImage(image);
+    setCurrentPage('download');
   };
 
   const handleTemplateSelect = (templateId: number, image: string) => {
@@ -56,7 +67,19 @@ export default function App() {
       {currentPage === 'greeting' && (
         <GreetingPage name={userName} onContinue={handleGreetingContinue} />
       )}
-      {currentPage === 'upload' && <UploadPage onUpload={handlePhotoUpload} />}
+      {currentPage === 'upload' && (
+        <UploadPage
+          onChooseTemplate={handleChooseTemplate}
+          onCustomizeAI={handleCustomizeAI}
+        />
+      )}
+      {currentPage === 'ai' && userPhoto && (
+        <AIServicePage
+          userPhoto={userPhoto}
+          userName={userName}
+          onDone={handleAIGenerated}
+        />
+      )}
       {currentPage === 'template' && userPhoto && (
         <TemplatePage
           userPhoto={userPhoto}
@@ -74,3 +97,5 @@ export default function App() {
     </div>
   );
 }
+
+
