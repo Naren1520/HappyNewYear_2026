@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
-
+import NarenSJImage from '../assets/NarenSJ.jpeg';
+import NisargaKShetty from '../assets/NisargaKShetty.jpeg';
 interface ContributorsPageProps {
   onBack: () => void;
 }
@@ -29,13 +30,12 @@ const containerStyle: React.CSSProperties = {
   position: 'fixed',
   inset: 0,
   background: 'linear-gradient(135deg, #0f0a1f, #2d1b4e, #1a0f3a)',
-  overflow: 'auto',
+  overflow: 'hidden',
 };
 
 const backgroundDotsContainerStyle: React.CSSProperties = {
-  position: 'fixed',
+  position: 'absolute',
   inset: 0,
-  pointerEvents: 'none',
 };
 
 const mainContentStyle: React.CSSProperties = {
@@ -43,9 +43,9 @@ const mainContentStyle: React.CSSProperties = {
   zIndex: 10,
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'flex-start',
-  minHeight: 'auto',
-  padding: '5rem 1rem 2rem 1rem',
+  justifyContent: 'center',
+  minHeight: '100vh',
+  padding: '1rem',
 };
 
 const maxWidthContainerStyle: React.CSSProperties = {
@@ -129,7 +129,15 @@ const avatarStyle = (bgGradient: string): React.CSSProperties => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  overflow: 'hidden',
 });
+
+const profileImageStyle: React.CSSProperties = {
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  borderRadius: '50%',
+};
 
 const avatarTextStyle: React.CSSProperties = {
   fontSize: '2.25rem',
@@ -276,7 +284,7 @@ export function ContributorsPage({ onBack }: ContributorsPageProps) {
                       repeat: Infinity,
                     }}
                   >
-                    <span style={avatarTextStyle}>{contributors[0].name.charAt(0)}</span>
+                    <img src={NarenSJImage} alt={contributors[0].name} style={profileImageStyle} />
                   </motion.div>
                   <h2 style={nameStyle}>{contributors[0].name}</h2>
                   <p style={roleStyle(contributors[0].bgColor)}>{contributors[0].role}</p>
@@ -309,7 +317,7 @@ export function ContributorsPage({ onBack }: ContributorsPageProps) {
                       repeat: Infinity,
                     }}
                   >
-                    <span style={avatarTextStyle}>{contributors[1].name.charAt(0)}</span>
+                    <img src={NisargaKShetty} alt={contributors[1].name} style={profileImageStyle} />
                   </motion.div>
                   <h2 style={nameStyle}>{contributors[1].name}</h2>
                   <p style={roleStyle(contributors[1].bgColor)}>{contributors[1].role}</p>
