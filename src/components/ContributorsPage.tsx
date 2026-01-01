@@ -27,10 +27,10 @@ const contributors = [
 ];
 
 const containerStyle: React.CSSProperties = {
-  position: 'fixed',
-  inset: 0,
+  position: 'relative',
+  minHeight: '100vh',
   background: 'linear-gradient(135deg, #0f0a1f, #2d1b4e, #1a0f3a)',
-  overflow: 'hidden',
+  overflow: 'auto',
 };
 
 const backgroundDotsContainerStyle: React.CSSProperties = {
