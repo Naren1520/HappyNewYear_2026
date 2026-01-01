@@ -80,15 +80,18 @@ const backButtonStyle: React.CSSProperties = {
   left: '2rem',
   display: 'flex',
   alignItems: 'center',
-  gap: '0.5rem',
-  padding: '0.5rem 1rem',
+  gap: '0.75rem',
+  padding: '0.75rem 1.5rem',
   background: 'rgba(255, 255, 255, 0.1)',
   backdropFilter: 'blur(12px)',
-  borderRadius: '0.5rem',
-  border: '1px solid rgba(255, 255, 255, 0.2)',
+  borderRadius: '0.75rem',
+  border: '1px solid rgba(255, 255, 255, 0.3)',
   color: 'white',
   cursor: 'pointer',
   transition: 'all 0.3s ease',
+  fontSize: '1rem',
+  fontWeight: '500',
+  zIndex: 50,
 };
 
 const contributorsLayoutStyle: React.CSSProperties = {
@@ -105,15 +108,18 @@ const contributorCardStyle = (bgColor: string, isMobile: boolean): React.CSSProp
   padding: '2px',
   borderRadius: '1rem',
   width: isMobile ? '100%' : 'calc(50% - 1.5rem)',
-  minHeight: '400px',
+  minHeight: isMobile ? '450px' : '500px',
 });
 
 const contributorInnerStyle: React.CSSProperties = {
   background: 'linear-gradient(135deg, #0f0a1f, #2d1b4e, #1a0f3a)',
   borderRadius: '1rem',
-  padding: '2rem',
+  padding: '2.5rem 2rem',
   backdropFilter: 'blur(4px)',
   height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
 };
 
 const contributorTextCenterStyle: React.CSSProperties = {
@@ -149,22 +155,25 @@ const nameStyle: React.CSSProperties = {
   fontSize: '1.875rem',
   fontWeight: 'bold',
   color: 'white',
-  marginBottom: '0.5rem',
+  marginBottom: '0.75rem',
+  marginTop: '1rem',
 };
 
 const roleStyle = (bgGradient: string): React.CSSProperties => ({
-  fontSize: '1.125rem',
+  fontSize: '1rem',
   background: bgGradient,
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   backgroundClip: 'text',
   fontWeight: '600',
-  marginBottom: '1rem',
+  marginBottom: '1.25rem',
 });
 
 const descriptionStyle: React.CSSProperties = {
-  color: 'rgba(255, 255, 255, 0.7)',
-  fontSize: '1.125rem',
+  color: 'rgba(255, 255, 255, 0.75)',
+  fontSize: '1rem',
+  lineHeight: '1.6',
+  letterSpacing: '0.5px',
 };
 
 const footerStyle: React.CSSProperties = {
@@ -231,19 +240,12 @@ export function ContributorsPage({ onBack }: ContributorsPageProps) {
         <motion.button
           onClick={onBack}
           style={backButtonStyle}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.08, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
           whileTap={{ scale: 0.95 }}
-          onMouseEnter={(e) => {
-            const btn = e.currentTarget as HTMLButtonElement;
-            btn.style.background = 'rgba(255, 255, 255, 0.2)';
-          }}
-          onMouseLeave={(e) => {
-            const btn = e.currentTarget as HTMLButtonElement;
-            btn.style.background = 'rgba(255, 255, 255, 0.1)';
-          }}
+          className="flex items-center gap-3 px-6 py-3 rounded-lg bg-white/10 hover:bg-white/20 border border-white/30 text-white font-medium transition-all backdrop-blur-xl fixed top-6 left-6 z-50 md:top-8 md:left-8"
         >
           <ArrowLeft size={20} />
-          Back
+          <span>Go Back</span>
         </motion.button>
 
         <div style={maxWidthContainerStyle}>

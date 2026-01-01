@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion } from 'motion/react';
-import { Upload, Image as ImageIcon, Sparkles, Wand2 } from 'lucide-react';
+import { Upload, Image as ImageIcon, Sparkles, Wand2, Zap } from 'lucide-react';
 
 interface UploadPageProps {
   onChooseTemplate: (photo: string) => void;
@@ -147,17 +147,36 @@ export function UploadPage({ onChooseTemplate, onCustomizeAI }: UploadPageProps)
                       Choose Template
                     </button>
                   </div>
-                  <button
+                  <motion.button
                     onClick={() => {
                       if (preview) {
                         onCustomizeAI(preview);
                       }
                     }}
-                    className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg flex items-center justify-center gap-2 font-semibold transition-opacity hover:opacity-90"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full relative group overflow-hidden rounded-lg p-1"
                   >
-                    <Wand2 className="w-5 h-5" />
-                    Customize using AI
-                  </button>
+                    {/* Animated gradient border */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition-opacity duration-300" />
+                    
+                    {/* Button content */}
+                    <div className="relative px-6 py-4 bg-gradient-to-r from-purple-700 to-pink-700 rounded-lg flex items-center justify-center gap-3 font-semibold text-white group-hover:shadow-2xl group-hover:shadow-purple-500/50 transition-all duration-300">
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+                      >
+                        <Wand2 className="w-6 h-6" />
+                      </motion.div>
+                      <span className="text-lg">Customize using AI</span>
+                      <motion.div
+                        animate={{ x: [0, 4, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        <Zap className="w-5 h-5 text-yellow-300" />
+                      </motion.div>
+                    </div>
+                  </motion.button>
                 </div>
               </div>
             )}

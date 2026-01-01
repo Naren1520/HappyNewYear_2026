@@ -57,8 +57,8 @@ export default function App() {
     setCurrentPage('download');
   };
 
-  const handleBackToTemplates = () => {
-    setCurrentPage('template');
+  const handleBackToUpload = () => {
+    setCurrentPage('upload');
   };
 
   const handleGoToContributors = () => {
@@ -67,6 +67,10 @@ export default function App() {
 
   const handleBackFromContributors = () => {
     setCurrentPage('greeting');
+  };
+
+  const handleBackToTemplates = () => {
+    setCurrentPage('template');
   };
 
   return (
@@ -87,6 +91,7 @@ export default function App() {
           userPhoto={userPhoto}
           userName={userName}
           onDone={handleAIGenerated}
+          onBack={handleBackToUpload}
         />
       )}
       {currentPage === 'template' && userPhoto && (
